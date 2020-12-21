@@ -29,13 +29,15 @@ void run(){
               break;
            }  
         }
+
         window.clear();
         window.draw(apple.shape);
         drawSnake(&snake, &window);
         window.display();
         snake.move(event);
-        snake.follow();
-        window.setFramerateLimit(60);
+        //snake.follow();
+        //snake.follow();
+        window.setFramerateLimit(5);
          if(snake.head->shapeOutOfWindowBounds()){
                  snake.head->comeFromOtherSide();   
                }

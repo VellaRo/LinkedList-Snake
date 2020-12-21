@@ -1,8 +1,9 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#define CIRCLESIZE 20.f 
-#define SPEED 2
+#define CIRCLERADIUS 20.f 
+#define CIRCLESIZE 40
+#define SPEED 40
 #define WINDOWSIZE 600
 
 #include <SFML/Graphics.hpp>
