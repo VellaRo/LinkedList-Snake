@@ -3,9 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>     
 #include <iostream>
-
 void drawSnake(Snake * snake, sf::RenderWindow * window);
-
+void isGameover(sf::RenderWindow & window);
 void run(){
     sf::RenderWindow window(sf::VideoMode(WINDOWSIZE, WINDOWSIZE) , "SNAKE");
     Snake snake;
@@ -35,13 +34,12 @@ void run(){
         drawSnake(&snake, &window);
         window.display();
         snake.move(event);
-        //snake.follow();
-        //snake.follow();
         window.setFramerateLimit(5);
-         if(snake.head->shapeOutOfWindowBounds()){
-                 snake.head->comeFromOtherSide();   
+          if(snake.shapeOutOfWindowBounds()){
+                 snake.comeFromOtherSide();   
                }
          apple.eatApple(&snake);
+        //isGameover(window);
          
          ///TEST
          // std::cout<<snake.head->shape.getPosition().x<<"\n";
@@ -61,6 +59,12 @@ void drawSnake(Snake * snake, sf::RenderWindow * window){
      // printf("size %i : ",i++);
    }
 }
+
+//void isGameover(sf::RenderWindow &window){
+  // if(GAMEOVER){
+    //  window.close();
+  // }
+//}
 
 
 

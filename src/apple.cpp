@@ -1,5 +1,7 @@
 #include "apple.h"
 #include "snake.h"
+#include "global.h"
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 Apple::Apple(){
@@ -13,8 +15,8 @@ Apple::Apple(){
 Apple::~Apple(){
 }
 void Apple::placeApple(){
-    std::cout<<"apple has been placed"<< "\n";
-    int relaiveSpace = 600 - 40 / 40;  
+    std::cout<<"apple has besen placed"<< "\n";
+    int relaiveSpace = (WINDOWSIZE - CIRCLESIZE) / CIRCLESIZE;  
     std::cout<<"hakko";  
     std::cout<<relaiveSpace;
     this->shape.setPosition(std::rand() % relaiveSpace* CIRCLESIZE, std::rand() % relaiveSpace *CIRCLESIZE);

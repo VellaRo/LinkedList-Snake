@@ -93,18 +93,14 @@ void Snake::move(sf::Event event){
                   this->head->direction.y = -SPEED;
                   this->head->shape.setPosition(this->head->shape.getPosition().x +this->head->direction.x , this->head->shape.getPosition().y + this->head->direction.y);
                   this->follow();
-                  //std::cout<<event.key.code<<"\n";
                   break;
                   //down 
                case sf::Keyboard::S:
                   this->head->direction.x = 0;
                   this->head->direction.y = SPEED;
                   this->head->shape.setPosition(this->head->shape.getPosition().x +this->head->direction.x , this->head->shape.getPosition().y + this->head->direction.y);
-                  this->follow();
-                  // direction.x = 0;
-                  // direction.y = SPEED;
+                  this->follow();  
                   // shape.setPosition(shape.getPosition().x +direction.x , shape.getPosition().y + direction.y);
-                 // std::cout<<event.key.code<<"\n";
                   break;
                   //right
                case sf::Keyboard::D:
@@ -112,11 +108,7 @@ void Snake::move(sf::Event event){
                   this->head->direction.y = 0;
                   this->head->shape.setPosition(this->head->shape.getPosition().x +this->head->direction.x , this->head->shape.getPosition().y + this->head->direction.y);
                   this->follow();
-                  // direction.x = SPEED;
-                  // direction.y = 0;
                   // shape.setPosition(shape.getPosition().x + direction.x , shape.getPosition().y + direction.y);
-                 // std::cout<<event.key.code<<"\n";
-                 // std::cout<<shape.getPosition().x<<"\n";
                   break;
                   //left
                case sf::Keyboard::A:
@@ -124,10 +116,7 @@ void Snake::move(sf::Event event){
                   this->head->direction.y = 0;
                   this->head->shape.setPosition(this->head->shape.getPosition().x +this->head->direction.x , this->head->shape.getPosition().y + this->head->direction.y);
                   this->follow();
-               // direction.x = -SPEED;
-               // direction.y = 0;
                //    shape.setPosition(shape.getPosition().x +direction.x , shape.getPosition().y + direction.y);
-                  //std::cout<<event.key.code<<"\n";
                   break;
 
                default:
@@ -139,33 +128,47 @@ void Snake::move(sf::Event event){
 
 
 
-bool Snakeelement::shapeOutOfWindowBounds(){
-      if(shape.getPosition().x < 0 -shape.getRadius() ||
-         shape.getPosition().x > WINDOWSIZE - (shape.getRadius()) ||
-         shape.getPosition().y < 0 -shape.getRadius()||
-         shape.getPosition().y > WINDOWSIZE - (shape.getRadius())
+bool Snake::shapeOutOfWindowBounds(){
+      this->temp = this->head;
+      while(temp != NULL){
+      if(this->temp->shape.getPosition().x < 0 -this->temp->shape.getRadius() ||
+         this->temp->shape.getPosition().x > WINDOWSIZE - (this->temp->shape.getRadius()) ||
+         this->temp->shape.getPosition().y < 0 -this->temp->shape.getRadius()||
+         this->temp->shape.getPosition().y > WINDOWSIZE - (this->temp->shape.getRadius())
          ){
          return true;
       }
+      
       return false;
+
+      }
+   
    }
 
-void Snakeelement::comeFromOtherSide(){
-if( shapeOutOfWindowBounds()){
-               if(direction.x > 0){
-                  shape.setPosition(0.0,shape.getPosition().y);    
+void Snake::comeFromOtherSide(){
+   if(WALL == true){
+      std::cout<<"GAME OVER";
+      //GAME OVER SCREEN ///TODO
+      //GAMEOVER = true;
+   }
+this->temp = this->head;
+      while(this->temp != NULL){
+//if( shapeOutOfWindowBounds()){
+               if(this->temp->direction.x > 0){
+                  this->temp->shape.setPosition(0.0,this->temp->shape.getPosition().y);    
                }
-               if(direction.x < 0){
-                  shape.setPosition(WINDOWSIZE - shape.getRadius(), shape.getPosition().y);    
+               if(this->temp->direction.x < 0){
+                  this->temp->shape.setPosition(WINDOWSIZE - 2* this->temp->shape.getRadius(), this->temp->shape.getPosition().y);    
                }
-               if(direction.y > 0){
-                  shape.setPosition(shape.getPosition().x , 0.0);    
+               if(this->temp->direction.y > 0){
+                  this->temp->shape.setPosition(this->temp->shape.getPosition().x , 0.0);    
                }
-               if(direction.y < 0){
-                  shape.setPosition(shape.getPosition().x ,WINDOWSIZE - shape.getRadius());    
+               if(this->temp->direction.y < 0){
+                  this->temp->shape.setPosition(this->temp->shape.getPosition().x ,WINDOWSIZE - 2*this->temp->shape.getRadius());    
                }
 
-            }
+  //          }
+    this->temp = this->temp->next;
     }
-
+}
 

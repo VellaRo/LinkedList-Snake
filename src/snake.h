@@ -6,6 +6,8 @@
 #define SPEED 40
 #define WINDOWSIZE 600
 
+const bool WALL = true;
+
 #include <SFML/Graphics.hpp>
 
 
@@ -19,8 +21,6 @@ class Snakeelement{
 
   // Snakeelement();
   void setPositionOfNewElement();
-  void comeFromOtherSide();
-  bool shapeOutOfWindowBounds();
   //void move(sf::Event event);
 };
 
@@ -38,5 +38,9 @@ public:
   void setPositionOfNewElement();
   void follow();
   void move(sf::Event event); //TODO
+  void comeFromOtherSide();
+  bool shapeOutOfWindowBounds();
+
+
 };
 #endif
