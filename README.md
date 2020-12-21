@@ -1,2 +1,13 @@
 # Snake
-SnakeGame Test
+SnakeGame 
+
+
+TODO:
+
+	GAMEOVER
+	
+	MENU
+	
+	come from other side without wall
+	
+	
