@@ -4,9 +4,9 @@ SnakeGame
 
 TODO:
 
-	GAMEOVER
+	GAMEOVER // als SCHRIFT
 	
-	MENU
+	MENU 
 	
 	come from other side without wall
 	
