@@ -3,15 +3,16 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>     
 #include <iostream>
+
 void drawSnake(Snake * snake, sf::RenderWindow * window);
-void isGameover(sf::RenderWindow & window);
+void gameOver(Snake *snake , sf::RenderWindow *window);
+
+bool MenuOptionSelected =false;
+
 void run(){
     sf::RenderWindow window(sf::VideoMode(WINDOWSIZE, WINDOWSIZE) , "SNAKE");
     Snake snake;
-    Apple apple;
-    //apple.placeApple();
-    //apple.shape.setFillColor(sf::Color::Green);
-    
+    Apple apple;    
 
     while (window.isOpen())
     {
@@ -28,43 +29,54 @@ void run(){
               break;
            }  
         }
+        //MOVE SNAKE
+        snake.move(event);
+         //CHECK IF APPLE EATEN // THAN PLACE APPLE
+        apple.eatApple(&snake);
+         
+         //CHECK IF GAMEOVER
+        gameOver(&snake , &window);
 
+         //SetFrames
+        window.setFramerateLimit(5);
+        
         window.clear();
         window.draw(apple.shape);
         drawSnake(&snake, &window);
         window.display();
-        snake.move(event);
-        window.setFramerateLimit(5);
-          if(snake.shapeOutOfWindowBounds()){
-                 snake.comeFromOtherSide();   
-               }
-         apple.eatApple(&snake);
-        //isGameover(window);
-         
-         ///TEST
-         // std::cout<<snake.head->shape.getPosition().x<<"\n";
-         // std::cout<<snake.head->shape.getPosition().y<<"\n";
-         // std::cout<<apple.shape.getPosition().x<<"\n";
-         // std::cout<<apple.shape.getPosition().y<<"\n";
     }
       
 }
 
 void drawSnake(Snake * snake, sf::RenderWindow * window){
-  // int i= 0;
    snake->temp = snake->head;
    while(snake->temp != NULL){
       window->draw(snake->temp->shape);
       snake->temp = snake->temp->next;
-     // printf("size %i : ",i++);
    }
 }
 
-//void isGameover(sf::RenderWindow &window){
-  // if(GAMEOVER){
-    //  window.close();
-  // }
-//}
+void gameOver(Snake *snake , sf::RenderWindow *window){
+   if(snake->hitItself()){
+           std::cout<<"GAME OVER \n";
+
+           window->close();
+        }
+          if(snake->shapeOutOfWindowBounds()){
+             if(WALL == true){
+                  std::cout<<"GAME OVER";
+                  window->close();
+                    
+               }
+            else{
+               //muss noch gemacht werden
+               snake->comeFromOtherSide();
+            }
+          }
+          // PRINT HIGHSCORE
+   std::cout<<"\nHIGHSCORE : "<<snake->size<<"\n";
+}
+
 
 
 

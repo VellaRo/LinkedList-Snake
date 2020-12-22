@@ -31,6 +31,8 @@ public:
   Snakeelement * tail;
   Snakeelement * temp;
 
+  int size;
+  
   explicit Snake();
   ~Snake();
   void grow();
@@ -40,6 +42,7 @@ public:
   void move(sf::Event event); //TODO
   void comeFromOtherSide();
   bool shapeOutOfWindowBounds();
+  bool hitItself();
 
 
 };
