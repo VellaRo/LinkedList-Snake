@@ -3,17 +3,25 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>     
 #include <iostream>
-
+//#include "menu.h"
 void drawSnake(Snake * snake, sf::RenderWindow * window);
 void gameOver(Snake *snake , sf::RenderWindow *window);
 
+
+void runMenu(sf::RenderWindow *window);
 bool MenuOptionSelected =false;
 
 void run(){
     sf::RenderWindow window(sf::VideoMode(WINDOWSIZE, WINDOWSIZE) , "SNAKE");
     Snake snake;
     Apple apple;    
+    //Menu menu;
 
+    if(MenuOptionSelected ==false){
+
+           runMenu(&window);
+        }
+   else{
     while (window.isOpen())
     {
         sf::Event event;
@@ -45,8 +53,10 @@ void run(){
         drawSnake(&snake, &window);
         window.display();
     }
-      
+    }
 }
+      
+
 
 void drawSnake(Snake * snake, sf::RenderWindow * window){
    snake->temp = snake->head;
@@ -77,7 +87,17 @@ void gameOver(Snake *snake , sf::RenderWindow *window){
    std::cout<<"\nHIGHSCORE : "<<snake->size<<"\n";
 }
 
+// void runMenu(sf::RenderWindow *window){
 
+//    sf::Font font;
+//    font.loadFromFile("/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf");
 
+//    sf::Text text;
 
-
+//    text = sf::Text("hello", font, 80);
+//    text.setFont(font);
+//    text.setColor(sf::Color::Yellow);
+//    window->draw(text);
+//    window->clear(sf::Color::White);
+//    window->display();
+// }

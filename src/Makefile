@@ -3,7 +3,7 @@ CC=g++
 CFLAGS=-c -Wall -Wextra -std=c++11
 LDFLAGS=
 LIBFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
-SOURCES=main.cpp snake.cpp gameLoop.cpp  apple.cpp 
+SOURCES=main.cpp snake.cpp gameLoop.cpp  apple.cpp menu.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=SNAKE
 BINDIR=/usr/bin
