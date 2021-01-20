@@ -17,11 +17,11 @@ void run(){
     Apple apple;    
     //Menu menu;
 
-    if(MenuOptionSelected ==false){
+   //  if(MenuOptionSelected ==false){
 
-           runMenu(&window);
-        }
-   else{
+   //         runMenu(&window);
+   //      }
+   // else{
     while (window.isOpen())
     {
         sf::Event event;
@@ -53,7 +53,7 @@ void run(){
         drawSnake(&snake, &window);
         window.display();
     }
-    }
+   //  }
 }
       
 

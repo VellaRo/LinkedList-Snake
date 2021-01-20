@@ -1,14 +1,18 @@
 #include <SFML/Graphics.hpp>  
 #include <iostream>
 #include "fonts.h"      // ArialFontDatei
+#include "snake.h"
 
 void runMenu(sf::RenderWindow *window) {
    sf::Font font;
    if (!font.loadFromFile(ArialFontDatei)) {
       std::cerr << "Font nicht gefunden\n";
    }
-   sf::Text text("Hello", font, 80);
-   text.setFillColor(sf::Color::Black);
+   sf::Text startGameText("StartGame", font, 40);
+   startGameText.setFillColor(sf::Color::White);
+   startGameText.setPosition( WINDOWSIZE -startGameText.getLocalBounds().width ,0);
+   std::cout<<startGameText.getLocalBounds().width;
+   
    
    while (window->isOpen()) {
       // Ereignisse abfragen
@@ -19,9 +23,9 @@ void runMenu(sf::RenderWindow *window) {
             window->close();
         }
       }
-      window->clear(sf::Color::White); // ohne Param.: Black
+      window->clear(); // ohne Param.: Black
       // hier alles zeichnen:
-      window->draw(text);
+      window->draw(startGameText);
       window->display();
    }
 }

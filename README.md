@@ -3,11 +3,16 @@ SnakeGame
 
 
 TODO:
-
-	GAMEOVER // als SCHRIFT
 	
-	MENU 
+	Start/End MENU 
 	
-	come from other side without wall
+	Audio 
+	
+	comments 
+	
+	clean
+	
+	git 
+	(come from other side without wall)
 	
 	
