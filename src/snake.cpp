@@ -5,18 +5,22 @@ void setPositionOfNewElement(Snakeelement * element);
 //CONSTRUCTOR
  Snake::Snake()
     {   
-        //TODO geleich mit eins anfacgen ?
+
         head = NULL;
         tail = NULL;
         temp = NULL;
         size = 0;
+
+        //Starts with head
         this->grow();
         head->shape.setFillColor(sf::Color::Yellow);
 }
 Snake::~Snake(){
-    //TODO
+    std::cout << "GAME OVER" << "\n";
+    std::cout << "HIGHSCORE: " <<this->size << "\n";
 }
 
+//Check if Snake empty 
 bool Snake::isEmpty(){
     if(head == NULL){
         return true;
@@ -27,7 +31,8 @@ bool Snake::isEmpty(){
     }
     
 }
-
+ 
+//Snake gets new Snakeelement when Apple eaten
 void Snake::grow(){
     size++;
     temp = new Snakeelement;
@@ -49,6 +54,8 @@ void Snake::grow(){
        
  }
 
+//Help for grow() 
+   //setsnew Element at right Position
 void Snake::setPositionOfNewElement(){
    if(this->tail->prev->direction.x > 0){
    this->tail->shape.setPosition(this->tail->prev->shape.getPosition().x -2*this->head->shape.getRadius() ,
@@ -68,6 +75,7 @@ void Snake::setPositionOfNewElement(){
    }
 }
 
+//all Elements Except Head follow the next Element
 void Snake::follow(){
    
    this->temp = this->tail;
@@ -82,11 +90,15 @@ void Snake::follow(){
                   }
 }
 
+// Move the Head
+      //Check if opposite pressed (Down ,UP ==> Snakes stillgoes down)
 void Snake::move(sf::Event event){
     switch (event.key.code)
                {
                   //up
                case sf::Keyboard::W:
+               //Fallthrough
+               case sf::Keyboard::Up:
                   //if direction == Opposite
                   if(this->head->direction.y != SPEED){
                      
@@ -103,6 +115,8 @@ void Snake::move(sf::Event event){
                   break;
                   //down 
                case sf::Keyboard::S:
+               //Fallthrough
+               case sf::Keyboard::Down:
                   //if direction == Opposite
                   if(this->head->direction.y != -SPEED){
                      
@@ -121,6 +135,8 @@ void Snake::move(sf::Event event){
                   break;
                   //right
                case sf::Keyboard::D:
+               //Fallthrough
+               case sf::Keyboard::Right:
                //if direction == Opposite
                   if(this->head->direction.x != -SPEED){
                      this->head->direction.x = SPEED;
@@ -136,6 +152,8 @@ void Snake::move(sf::Event event){
                   break;
                   //left
                case sf::Keyboard::A:
+               //Fallthrough
+               case sf::Keyboard::Left:
                   //if direction == Opposite
                   if(this->head->direction.x != SPEED){
                      this->head->direction.x = -SPEED;
@@ -160,7 +178,7 @@ void Snake::move(sf::Event event){
     }
 
 
-
+//Check if Wall is hit
 bool Snake::shapeOutOfWindowBounds(){
       this->temp = this->head;
       while(temp != NULL){
@@ -175,9 +193,15 @@ bool Snake::shapeOutOfWindowBounds(){
       }
          return false;
    }
-
+//TODO 
+   /*
+   * When head goes througwall appear from other side 
+   * PROBLEM: FOLLOW METHODE funktionsweiße
+   * 
+   * 
+      */
 void Snake::comeFromOtherSide(){
-   //TODO
+   
 this->temp = this->head;
       while(this->temp != NULL){
                if(this->temp->direction.x > 0){
@@ -196,6 +220,7 @@ this->temp = this->head;
     }
 }
 
+//Chech if SnakeHead hit Snakebody
 bool Snake::hitItself(){
    this->temp =this->head->next;
    while(this->temp != NULL){

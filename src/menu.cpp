@@ -2,7 +2,13 @@
 #include <iostream>
 #include "fonts.h"      // ArialFontDatei
 #include "snake.h"
-
+//TODO
+/***
+ * 
+ * 
+ * Start
+ * End
+*/
 void runMenu(sf::RenderWindow *window) {
    sf::Font font;
    if (!font.loadFromFile(ArialFontDatei)) {

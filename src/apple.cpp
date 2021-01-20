@@ -2,14 +2,17 @@
 #include "snake.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
+//constructor
 Apple::Apple(){
     this->shape  = sf::CircleShape(CIRCLERADIUS);
     this->shape.setFillColor(sf::Color::Red);    
     this->placeApple();
 
     }
-
+//destructor
 Apple::~Apple(){
+    //TODO //Audio Noise ???
 }
 void Apple::placeApple(){
     int relaiveSpace = (WINDOWSIZE - CIRCLESIZE) / CIRCLESIZE;  
@@ -19,7 +22,7 @@ void Apple::placeApple(){
 }
 
 void Apple::eatApple(Snake * snake){
-
+    //check if head in range apple
     sf::Vector2f positionHead = snake->head->shape.getPosition();
     float radiusHead = snake->head->shape.getRadius();
     if(positionHead.x +radiusHead >= this->shape.getPosition().x && 

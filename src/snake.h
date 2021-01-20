@@ -6,11 +6,12 @@
 #define SPEED 40
 #define WINDOWSIZE 600
 
+//Boundarais
 const bool WALL = true;
 
 #include <SFML/Graphics.hpp>
 
-
+// Sankeelement CircleShaped
 class Snakeelement{
 
   public:
@@ -19,10 +20,9 @@ class Snakeelement{
   sf::CircleShape shape; 
   sf::Vector2f direction;
 
-  // Snakeelement();
   void setPositionOfNewElement();
-  //void move(sf::Event event);
 };
+
 
 class Snake{
 
@@ -33,17 +33,20 @@ public:
 
   int size;
   
+  //constructor
   explicit Snake();
+  
+  //destructor
   ~Snake();
+  
   void grow();
   bool isEmpty();
-  void setPositionOfNewElement();
+  void setPositionOfNewElement(); 
   void follow();
-  void move(sf::Event event); //TODO
+  void move(sf::Event event);
   void comeFromOtherSide();
   bool shapeOutOfWindowBounds();
   bool hitItself();
-
 
 };
 #endif
