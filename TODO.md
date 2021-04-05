@@ -8,12 +8,6 @@ TODO:
 	
 	Audio 
 	
-	comments 
-	
-	clean
-	
-	git 
-	
 	(come from other side without wall)
 	
 	
