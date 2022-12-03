@@ -37,6 +37,7 @@ void Snake::grow(){
     size++;
     temp = new Snakeelement;
     temp->shape = sf::CircleShape(CIRCLERADIUS);
+    temp->shape.setPosition(400.f, 40.f);    
     temp->prev =tail;
     temp->next = NULL;
     if(isEmpty()){
